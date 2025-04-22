@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Products - Inkspire Pen</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 40px;
+      color: #004d40;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .product-card h3 {
+      margin-top: 15px;
+      color: #333;
+    }
+
+    .product-card p {
+      font-size: 0.95em;
+      color: #666;
+    }
+
+    .buy-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #004d40;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .buy-btn:hover {
+      background-color: #00796b;
+    }
+  </style>
+</head>
+<body>
+  <h1>All Products</h1>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="images/golden.jpg" alt="Golden Era Pen">
+      <h3>Golden Era</h3>
+      <p>A collector's delight with timeless design.</p>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/minimal.jpg" alt="Minimal Muse Pen">
+      <h3>Minimal Muse</h3>
+      <p>Understated elegance for everyday inspiration.</p>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/nova.jpg" alt="Inkspire Nova Pen">
+      <h3>Inkspire Nova</h3>
+      <p>Bold. Bright. Brilliant strokes every time.</p>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/lumino.jpg" alt="Lumino">
+      <h3>Lumino</h3>
+      <p>Glow-in-the-dark ink with futuristic design.</p>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+  </div>
+</body>
+</html>

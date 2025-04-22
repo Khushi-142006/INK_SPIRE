@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inkspire Pen</title>
+  <link rel="stylesheet" href="may.css">
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="loader-wrapper">
+    <div class="pen-loader">
+      <img src="https://cdn-icons-png.flaticon.com/512/1006/1006547.png" alt="Pen Loader">
+      <p>Crafting Inspiration...</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="image-container">
+        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66" alt="Hero Background" class="hero-img">
+        <div class="overlay-text1">
+          <h1 class="logo-title">Inkspire <span class="highlight">Pen</span></h1>
+          <p class="slogan">Write. Express. Inspire.</p>
+          <p class="statement">Pens that know your mood, your words, your magic.</p>
+        </div>
+        <div class="overlay-text2">
+          <div class="InputContainer">
+            <input class="input" placeholder="Search pens..." />
+          </div>
+          <div class="account-icon">👤</div>
+        </div>
+        <div class="overlay-text3">
+          <a href="#products" class="cta-button">Explore Pens</a>
+        </div>
+      </div>
+    </section>
+<section class="products" id="products">
+  <h2>Our Collection</h2>
+  <div class="product-list" id="productList">
+    <div class="product-card">
+      <img src="C:\Users\Lenovo\Downloads\Flux_Dev_a_lush_3d_render_of_A_futuristic_and_ecofriendly_pen__1.jpg"text=Classic+Inkspire">
+      <h3>Classic Inkspire</h3>
+      <p>Sleek finish with smooth-flowing ink.</p>
+      <button>Buy Now</button>
+    </div>
+    <div class="product-card">
+      <img src="C:\Users\Lenovo\Downloads\Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_futuristic_0.jpg"text=Golden+Era">
+      <h3>Golden Era</h3>
+      <p>Luxury meets legacy. A collector's delight.</p>
+      <button>Buy Now</button>
+    </div>
+    <div class="product-card">
+      <img src="C:\Users\Lenovo\Downloads\Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_futuristic_1.jpg""text=Minimal+Muse">
+      <h3>Minimal Muse</h3>
+      <p>Understated elegance for everyday inspiration.</p>
+      <button>Buy Now</button>
+    </div>
+    <div class="product-card">
+      <img src="C:\Users\Lenovo\Downloads\Flux_Dev_a_surreal_and_vibrant_cinematic_photo_of_A_futuristic_1.jpg""text=Inkspire+Nova">
+      <h3>Inkspire Nova</h3>
+      <p>Bold. Bright. Brilliant strokes every time.</p>
+      <button>Buy Now</button>
+    </div>
+   
+
+    <a href="products.html" style="text-decoration: none; color: inherit;">
+  <div class="product-card" style="background-color: #111; color: white;">
+    <p style="margin-top: 80px;">→ Click here to see all products</p>
+  </div>
+</a>
+</section>
+<section>
+       <div class="mood-section">
+  <h1>Choose your pen depending on your mood</h1>
+
+  <div class="mood-buttons">
+    <button class="mood-btn joy" onclick="showPens('happy')">😊 Joy Jotters</button>
+    <button class="mood-btn peace" onclick="showPens('calm')">🧘 Peace Pens</button>
+    <button class="mood-btn power" onclick="showPens('bold')">💥 Power Scribers</button>
+  </div>
+
+  <div id="penDisplay" class="pen-display"></div>
+
+  <!-- Background Music -->
+  <audio id="happyMusic" src="https://cdn.pixabay.com/audio/2022/03/17/audio_f831c04014.mp3" preload="auto"></audio>
+  <audio id="calmMusic" src="https://cdn.pixabay.com/audio/2023/02/02/audio_8e3d55552a.mp3" preload="auto"></audio>
+  <audio id="boldMusic" src="https://cdn.pixabay.com/audio/2022/11/07/audio_ee1cced3d1.mp3" preload="auto"></audio>
+</div>
+
+<script>
+  const pens = {
+    happy: [
+      { name: "Sunny Bloom", color: "#FFD700", price: "₹120" },
+      { name: "Mango Spark", color: "#FFA500", price: "₹135" },
+      { name: "Cherry Pop", color: "#FF6F61", price: "₹110" },
+      { name: "Zest Ray", color: "#FFF176", price: "₹125" }
+    ],
+    calm: [
+      { name: "Ocean Mist", color: "#AEDFF7", price: "₹140" },
+      { name: "Lavender Drift", color: "#D1C4E9", price: "₹150" },
+      { name: "Sky Haze", color: "#B3E5FC", price: "₹130" },
+      { name: "Eucalyptus Whisper", color: "#A5D6A7", price: "₹145" }
+    ],
+    bold: [
+      { name: "Crimson Command", color: "#B71C1C", price: "₹160" },
+      { name: "Onyx Flame", color: "#212121", price: "₹175" },
+      { name: "Electric Ember", color: "#1E88E5", price: "₹155" },
+      { name: "Violet Vibe", color: "#7E57C2", price: "₹165" }
+    ]
+  };
+
+  const audios = {
+    happy: document.getElementById("happyMusic"),
+    calm: document.getElementById("calmMusic"),
+    bold: document.getElementById("boldMusic"),
+  };
+
+  function showPens(mood) {
+    // Stop all music first
+    for (let key in audios) {
+      audios[key].pause();
+      audios[key].currentTime = 0;
+    }
+
+    audios[mood].volume = 0.4;
+    audios[mood].play();
+
+    const penDisplay = document.getElementById("penDisplay");
+    penDisplay.innerHTML = "";
+
+    pens[mood].forEach((pen, index) => {
+      const card = document.createElement("div");
+      card.className = "pen-card";
+      card.style.animationDelay = `${index * 0.2}s`;
+
+      card.innerHTML = `
+        <div class="color-box" style="background-color: ${pen.color};"></div>
+        <h3>${pen.name}</h3>
+        <p>Color: ${pen.color}</p>
+        <p>Price: ${pen.price}</p>
+      `;
+
+      penDisplay.appendChild(card);
+    });
+  }
+
+  // Pen trail effect
+  const trailDots = [];
+  window.addEventListener("mousemove", e => {
+    const dot = document.createElement("div");
+    dot.className = "trail";
+    dot.style.left = `${e.pageX - 5}px`;
+    dot.style.top = `${e.pageY - 5}px`;
+    document.body.appendChild(dot);
+    trailDots.push(dot);
+    setTimeout(() => {
+      dot.remove();
+    }, 1000);
+  });
+</script>
+
+<div class="poem-container">
+  <h1>Write a Poem</h1>
+  <input type="text" placeholder="Your name..." id="name" />
+  <textarea placeholder="Your words go here..." id="poemText" rows="8" cols="40"></textarea>
+  <button id="saveBtn">Save My Poem</button>
+
+  <div id="poemDisplay" class="output-section">
+    <!-- Poem preview will appear here -->
+  </div>
+</div>
+
+  <script>
+    // Show content after loader
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+  </script>
+<section class="multi-pen-section" id="pen-section">
+  <h2 class="title">One Pen. Many Purposes.</h2>
+
+  <div class="pen-carousel-container">
+    <div class="pen-3d">
+      <img src="C:\Users\Lenovo\OneDrive\Desktop\0009195_Waterman-Hemisphere-Matte-Black-Gold-Trim-Fountain-Pen-Fine-Nib.jpeg" alt="Rotating Pen" class="pen-image" />
+
+      <!-- Glowing Tooltip Dots -->
+      <div class="tooltip stylus" data-tooltip="Stylus for touchscreens"></div>
+      <div class="tooltip highlighter" data-tooltip="Built-in highlighter"></div>
+      <div class="tooltip usb" data-tooltip="USB storage in cap"></div>
+      <div class="tooltip torch" data-tooltip="Mini LED torch"></div>
+    </div>
+  </div>
+
+  </section>
+<section id="gallery">
+  <h2>Penstagram Highlights</h2>
+  <div class="gallery-grid">
+    <a href="C:\Users\Lenovo\Downloads\Flux_Dev_A_futuristic_and_ecofriendly_pen_with_sleek_design_an_2.jpg" class="gallery-item" target="_blank">
+      <img src="C:\Users\Lenovo\Downloads\Flux_Dev_A_futuristic_and_ecofriendly_pen_with_sleek_design_an_2.jpg" alt="Pen 1">
+<p class="caption"> Inkspire</p>
+    </a>
+    <a href="C:\Users\Lenovo\Downloads\Flux_Dev_A_futuristic_and_ecofriendly_pen_with_sleek_design_an_2.jpg" class="gallery-item" target="_blank">
+      <img src="C:\Users\Lenovo\Downloads\Flux_Dev_A_futuristic_and_ecofriendly_pen_with_sleek_design_an_2.jpg" alt="Journal Setup"> 
+<p class="caption">Journaling Joys</p>
+    </a>
+    <a href="C:\Users\Lenovo\Downloads\Flux_Dev_A_futuristic_and_ecofriendly_pen_with_sleek_design_an_2.jpg" class="gallery-item" target="_blank">
+      <img src="C:\Users\Lenovo\Downloads\Flux_Dev_A_futuristic_and_ecofriendly_pen_with_sleek_design_an_2.jpg" alt="Calligraphy"> 
+<p class="caption">The Art of Letters</p>
+    </a>
+    <a href="C:\Users\Lenovo\Downloads\Flux_Dev_A_futuristic_and_ecofriendly_pen_with_sleek_design_an_2.jpg" class="gallery-item" target="_blank">
+      <img src="C:\Users\Lenovo\Downloads\Flux_Dev_A_futuristic_and_ecofriendly_pen_with_sleek_design_an_2.jpg" alt="Inkspire Vibe">
+<p class="caption">The Inkspire Aura</p>
+    </a>
+    <!-- Add more images as needed -->
+  </div>
+</section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonial-list">
+      <div class="testimonial-item">
+        <p>"Inkspire Pen is the best pen I have ever used! Smooth writing and a stylish design."</p>
+        <h4>- Sarah W.</h4>
+      </div>
+      <div class="testimonial-item">
+        <p>"The Golden Era pen feels like a work of art. It's perfect for collectors!"</p>
+        <h4>- James T.</h4>
+      </div>
+    </div>
+  </section>
+<section id="about" class="about-section">
+  <div class="about-container">
+    <h2>About Us</h2>
+    <p>
+      At <strong>Inkspire Pen</strong>, we believe words are powerful. That's why we created a pen that blends innovation, elegance, and sustainability. Whether you're a writer, artist, student, or dreamer—Inkspire is made for you.
+    </p>
+    <p>
+      With features like eco-smart ink, mood-based suggestions, and customizable design, our pens are more than tools—they're companions for your creativity.
+    </p>
+  </div>
+</section>
+
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-logo">
+      <h3>Inkspire Pen</h3>
+      <p>Inspire your words with every stroke.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Specifications</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Inkspire Pen. All rights reserved.</p>
+  </div>
+</footer>
+window.onload = function() {
+  document.body.classList.add('loaded');
+};
+window.onload = function() {
+  console.log("Page loaded");
+  document.body.classList.add('loaded');
+};
+
+<script>
+  document.getElementById('saveBtn').addEventListener('click', function () {
+    const name = document.getElementById('name').value.trim();
+    const poem = document.getElementById('poemText').value.trim();
+    const output = document.getElementById('poemDisplay');
+
+    if (name && poem) {
+      output.innerHTML = `
+        <h3>${name}'s Poem</h3>
+        <p>${poem}</p>
+      `;
+    } else {
+      output.innerHTML = "<p>Please enter your name and write something!</p>";
+    }
+  });
+</script>
+
+
+</body>
+</html>
+
+
